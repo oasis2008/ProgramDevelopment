@@ -1,10 +1,13 @@
 package com.oasis.android;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.oasis.android.dagger2.c.Car;
+import com.oasis.android.homepage.HomePageActivity;
 import com.oasis.android.javabase.concurrent.CountDownLatchTest;
+import com.oasis.android.javabase.list.StackTest;
 
 /**
  * @author oasis2008
@@ -32,5 +35,22 @@ public class MainActivity extends AppCompatActivity {
         car.getEngineA().run();
         car.getEngineB().run();
 
+        StackTest stackTest = new StackTest();
+        stackTest.testPeek();
+        stackTest.testPop();
+
+        try {
+            Thread.sleep(4000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        switchToHomePage();
+    }
+
+    private void switchToHomePage(){
+        Intent intent = new Intent(this, HomePageActivity.class);
+        startActivity(intent);
+        this.finish();
     }
 }
